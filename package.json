@@ -1,28 +1,44 @@
 {
   "name": "astro-htmx",
-  "version": "1.0.6",
+  "version": "2.0.0",
   "license": "MIT",
   "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/xstevenyung/astro-htmx.git"
   },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "exports": {
-    ".": "./src/index.js",
-    "./package.json": "./package.json"
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    }
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "astro",
     "withastro",
     "astro-integration",
     "astro-component"
   ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && esbuild index.ts --bundle --format=cjs --outdir=dist --out-extension:.js=.js && esbuild index.ts --bundle --format=esm --outdir=dist --out-extension:.js=.mjs"
+  },
   "devDependencies": {
-    "astro": "^4.9.2",
-    "htmx.org": "^1.9.0"
+    "esbuild": "^0.25.1",
+    "typescript": "^5"
   },
   "peerDependencies": {
-    "astro": ">= 3.0.0",
-    "htmx.org": ">= 1.9.0"
-  }
+    "astro": "^5.5.3"
+  },
 }

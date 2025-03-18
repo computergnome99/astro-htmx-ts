@@ -1,0 +1,8 @@
+node_modules
+.gitignore
+.npmignore
+package-lock.json
+example/
+*.lock
+index.ts
+tsconfig.ts
